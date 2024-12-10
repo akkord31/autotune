@@ -1,0 +1,54 @@
+/* styles.css в папке employees */
+
+/* Стили для заголовка */
+h1 {
+    color: #004080;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стили для таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+th, td {
+    border: 1px solid #004080;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #004080;
+    color: #ffffff;
+}
+
+/* Стили для строк таблицы */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Стили для кнопки */
+a {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #004080;
+    color: #ffffff;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: #003060;
+}

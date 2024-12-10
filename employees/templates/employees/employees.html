@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сотрудники</title>
+    <link rel="stylesheet" href="{% static 'employees/styles.css' %}">
+</head>
+<body>
+    <h1>Сотрудники</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Таб.№</th>
+                <th>Фамилия</th>
+                <th>Оклад</th>
+                <th>Дети</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.tab_number }}</td>
+                    <td>{{ employee.surname }}</td>
+                    <td>{{ employee.salary }}</td>
+                    <td>{{ employee.children }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">Нет данных</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'homepage' %}" style="display: inline-block; padding: 10px 20px; background-color: #004080; color: #ffffff; border-radius: 5px; text-decoration: none;">Меню</a>
+</body>
+</html>

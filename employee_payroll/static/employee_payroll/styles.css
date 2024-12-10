@@ -1,0 +1,80 @@
+/* Основной стиль для всей страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Заголовок страницы */
+h1 {
+    text-align: center;
+    color: #004080;
+    margin: 20px 0;
+}
+
+/* Таблица */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #d1d9e0;
+}
+
+th {
+    background-color: #004080;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9fafe;
+}
+
+tr:hover {
+    background-color: #e6efff;
+}
+
+/* Ссылка "Меню" */
+a {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 20px auto;
+    background-color: #004080;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+a:hover {
+    background-color: #005bb5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    a {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поставщики</title>
+    <link rel="stylesheet" href="{% static 'suppliers/styles.css' %}">
+</head>
+<body>
+    <h1>Поставщики</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Код поставщика</th>
+                <th>Наименование</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+                <tr>
+                    <td>{{ supplier.code }}</td>
+                    <td>{{ supplier.name }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">Нет данных</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'homepage' %}" style="display: inline-block; padding: 10px 20px; background-color: #004080; color: #ffffff; border-radius: 5px; text-decoration: none;">Меню</a>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню</title>
+    <link rel="stylesheet" href="{% static 'homepage/styles.css' %}">
+</head>
+<body>
+    <div class="menu-container">
+        <h1>Меню</h1>
+        <ul class="menu-list">
+            <li>
+                <a href="{% url 'about_us' %}"
+                   {% if not request.permissions.view_about %} class="disabled" {% endif %}>
+                   О нас
+                </a>
+            </li>
+            <li>
+                <a href="#"
+                   {% if not request.permissions.view_reports %} class="disabled" {% endif %}>
+                   Отчёты
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'services' %}"
+                   {% if not request.permissions.view_services %} class="disabled" {% endif %}>
+                   Услуги
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'access_table' %}"
+                   {% if not request.permissions.view_access_system %} class="disabled" {% endif %}>
+                   Система доступа
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'supplier_list' %}"
+                   {% if not request.permissions.view_suppliers %} class="disabled" {% endif %}>
+                   Поставщики
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'employees' %}"
+                   {% if not request.permissions.view_employees %} class="disabled" {% endif %}>
+                   Сотрудники
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'payroll_list' %}"
+                   {% if not request.permissions.view_salary %} class="disabled" {% endif %}>
+                   Начисление ЗПП
+                </a>
+            </li>
+            <li>
+                <a href="#"
+                   {% if not request.permissions.change_user %} class="disabled" {% endif %}>
+                   Сменить пользователя
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

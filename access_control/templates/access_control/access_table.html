@@ -1,0 +1,30 @@
+<table border="1">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Homepage</th>
+            <th>About</th>
+            <th>Services</th>
+            <th>Suppliers</th>
+            <th>Employees</th>
+            <th>Salary</th>
+            <th>Reports</th>
+            <th>Access System</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for access in access_controls %}
+            <tr>
+                <td>{{ access.user.username }}</td>
+                <td>{{ access.view_homepage }}</td>
+                <td>{{ access.view_about }}</td>
+                <td>{{ access.view_services }}</td>
+                <td>{{ access.view_suppliers }}</td>
+                <td>{{ access.view_employees }}</td>
+                <td>{{ access.view_salary }}</td>
+                <td>{{ access.view_reports }}</td>
+                <td>{{ access.view_access_system }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
