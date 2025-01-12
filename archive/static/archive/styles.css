@@ -28,17 +28,13 @@ a:hover {
     background-color: #003366;
 }
 
-/* Основной контейнер для форм */
 .filter-and-form-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     gap: 20px;
-    padding: 20px;
+    margin: 20px auto;
     max-width: 1200px;
-    margin: 0 auto;
 }
-
 /* Стили формы фильтрации */
 .filter-form {
     flex: 1;
@@ -88,10 +84,9 @@ a:hover {
     background-color: #003366;
 }
 
-/* Стили формы добавления */
 .add-record-container {
-    flex: 1;
-    display: none; /* Скрываем форму по умолчанию */
+    width: 40%;
+    display: none;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -136,6 +131,21 @@ a:hover {
     background-color: #e60000;
 }
 
+/* Кнопка "Добавить запись" */
+#add-record-button {
+    background-color: #008000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#add-record-button:hover {
+    background-color: #006400;
+}
+
 /* Стили таблицы */
 table {
     width: 90%;
@@ -165,23 +175,8 @@ table tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Кнопка "Добавить запись" */
-#add-record-button {
-    background-color: #008000;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-#add-record-button:hover {
-    background-color: #006400;
-}
-
-
-@media (max-width: 600px) {
+/* Адаптивность */
+@media (max-width: 768px) {
     .filter-and-form-container {
         flex-direction: column;
         align-items: center;

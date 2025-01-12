@@ -8,47 +8,44 @@
     <link rel="stylesheet" href="{% static 'archive/styles.css' %}">
 </head>
 <body>
+
 <h1>Архив оказанных услуг</h1>
 <a href="{% url 'homepage' %}" class="button">Меню</a>
-<div>
-    <div class="filter-and-form-container">
-        <form method="GET" action="{% url 'archive' %}" class="filter-form">
-            <h2>Фильтр записей</h2>
-            <div>
-                <label for="car_code">Код машины:</label>
-                <input type="text" id="car_code" name="car_code" value="{{ request.GET.car_code }}">
-            </div>
-            <div>
-                <label for="service_code">Код услуги:</label>
-                <input type="text" id="service_code" name="service_code" value="{{ request.GET.service_code }}">
-            </div>
-            <div>
-                <label for="start_date">Дата начала (ГГГГ-ММ-ДД):</label>
-                <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}">
-            </div>
-            <div>
-                <label for="end_date">Дата окончания (ГГГГ-ММ-ДД):</label>
-                <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}">
-            </div>
-            <div>
-                <label for="sort_by">Сортировать по:</label>
-                <select name="sort_by" id="sort_by">
-                    <option value="service_date" {% if request.GET.sort_by == 'service_date' %}selected{% endif %}>Дате
-                        оказания услуги
-                    </option>
-                    <option value="final_price" {% if request.GET.sort_by == 'final_price' %}selected{% endif %}>
-                        Окончательной цене
-                    </option>
-                    <option value="car__code" {% if request.GET.sort_by == 'car__code' %}selected{% endif %}>Коду машины
-                    </option>
-                </select>
-            </div>
-            <button type="submit">Применить фильтр</button>
-        </form>
+<div class="filter-and-form-container">
+    <!-- Форма фильтрации -->
+    <form method="GET" action="{% url 'archive' %}" class="filter-form">
+        <h2>Фильтр записей</h2>
+        <div>
+            <label for="car_code">Код машины:</label>
+            <input type="text" id="car_code" name="car_code" value="{{ request.GET.car_code }}">
+        </div>
+        <div>
+            <label for="service_code">Код услуги:</label>
+            <input type="text" id="service_code" name="service_code" value="{{ request.GET.service_code }}">
+        </div>
+        <div>
+            <label for="start_date">Дата начала (ГГГГ-ММ-ДД):</label>
+            <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}">
+        </div>
+        <div>
+            <label for="end_date">Дата окончания (ГГГГ-ММ-ДД):</label>
+            <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}">
+        </div>
+        <div>
+            <label for="sort_by">Сортировать по:</label>
+            <select name="sort_by" id="sort_by">
+                <option value="service_date" {% if request.GET.sort_by == 'service_date' %}selected{% endif %}>Дате оказания услуги</option>
+                <option value="final_price" {% if request.GET.sort_by == 'final_price' %}selected{% endif %}>Окончательной цене</option>
+                <option value="car__code" {% if request.GET.sort_by == 'car__code' %}selected{% endif %}>Коду машины</option>
+            </select>
+        </div>
+        <button type="submit">Применить фильтр</button>
+    </form>
 
-        <button onclick="toggleAddForm()" id="add-record-button">Добавить запись</button>
-    </div>
+    <!-- Кнопка "Добавить запись" -->
+    <button onclick="toggleAddForm()" id="add-record-button">Добавить запись</button>
 
+    <!-- Форма добавления записи -->
     <div class="add-record-container" id="add-record-container">
         <button onclick="toggleAddForm()">Закрыть</button>
         <form method="POST" action="{% url 'archive_add' %}" id="add-record-form">
