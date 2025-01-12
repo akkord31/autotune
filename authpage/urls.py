@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path('', views.login_view, name='login'),  # Начальная страница авторизации
+    path('change_user/', views.change_user, name='change_user'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

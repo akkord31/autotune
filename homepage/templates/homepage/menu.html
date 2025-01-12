@@ -54,8 +54,7 @@
                 </a>
             </li>
             <li>
-                <a href="#"
-                   {% if not request.permissions.change_user %} class="disabled" {% endif %}>
+                <a href="{% url 'change_user' %}">
                    Сменить пользователя
                 </a>
             </li>
