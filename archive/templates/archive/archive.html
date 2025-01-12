@@ -5,10 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Архив услуг</title>
-    <link rel="stylesheet" href="{% static 'services/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'archive/styles.css' %}">
 </head>
 <body>
     <h1>Архив оказанных услуг</h1>
+
+    <form method="GET" action="{% url 'archive' %}">
+        <div>
+            <label for="car_code">Код машины:</label>
+            <input type="text" id="car_code" name="car_code" value="{{ request.GET.car_code }}">
+        </div>
+        <div>
+            <label for="service_code">Код услуги:</label>
+            <input type="text" id="service_code" name="service_code" value="{{ request.GET.service_code }}">
+        </div>
+        <div>
+            <label for="start_date">Дата начала (ГГГГ-ММ-ДД):</label>
+            <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}">
+        </div>
+        <div>
+            <label for="end_date">Дата окончания (ГГГГ-ММ-ДД):</label>
+            <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}">
+        </div>
+        <div>
+            <label for="sort_by">Сортировать по:</label>
+            <select name="sort_by" id="sort_by">
+                <option value="service_date" {% if request.GET.sort_by == 'service_date' %}selected{% endif %}>Дате оказания услуги</option>
+                <option value="final_price" {% if request.GET.sort_by == 'final_price' %}selected{% endif %}>Окончательной цене</option>
+                <option value="car__code" {% if request.GET.sort_by == 'car__code' %}selected{% endif %}>Коду машины</option>
+                <option value="service__code" {% if request.GET.sort_by == 'service__code' %}selected{% endif %}>Коду услуги</option>
+                <option value="service__name" {% if request.GET.sort_by == 'service__name' %}selected{% endif %}>Наименованию услуги</option>
+                <option value="car__brand" {% if request.GET.sort_by == 'car__brand' %}selected{% endif %}>Марке машины</option>
+                <option value="car__coefficient" {% if request.GET.sort_by == 'car__coefficient' %}selected{% endif %}>Коэффициенту машины</option>
+            </select>
+        </div>
+        <button type="submit">Применить фильтр</button>
+    </form>
+
     <table>
         <thead>
             <tr>
