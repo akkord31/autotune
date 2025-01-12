@@ -18,6 +18,7 @@ class AccessControlMiddleware:
                     'view_suppliers': access.view_suppliers,
                     'view_employees': access.view_employees,
                     'view_salary': access.view_salary,
+                    'view_archive': access.view_archive,
                 }
             except AccessControl.DoesNotExist:
                 request.permissions = {}

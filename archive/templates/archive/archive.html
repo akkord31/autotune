@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архив услуг</title>
+    <link rel="stylesheet" href="{% static 'services/styles.css' %}">
+</head>
+<body>
+    <h1>Архив оказанных услуг</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Марка</th>
+                <th>Код машины</th>
+                <th>Дата оказания услуги</th>
+                <th>Код услуги</th>
+                <th>Наименование</th>
+                <th>Цена</th>
+                <th>Коэффициент</th>
+                <th>Окончательная цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in archive_records %}
+            <tr>
+                <td>{{ record.car.brand }}</td>
+                <td>{{ record.car.code }}</td>
+                <td>{{ record.service_date }}</td>
+                <td>{{ record.service.code }}</td>
+                <td>{{ record.service.name }}</td>
+                <td>{{ record.service.price }}</td>
+                <td>{{ record.car.coefficient }}</td>
+                <td>{{ record.final_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'homepage' %}" style="display: inline-block; padding: 10px 20px; background-color: #004080; color: #ffffff; border-radius: 5px; text-decoration: none;">Меню</a>
+</body>
+</html>

@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'suppliers',
     'employees',
     'access_control',
-    'employee_payroll'
+    'employee_payroll',
+    'archive'
 ]
 
 MIDDLEWARE = [

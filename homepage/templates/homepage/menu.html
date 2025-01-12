@@ -54,6 +54,12 @@
                 </a>
             </li>
             <li>
+                <a href="{% url 'archive' %}"
+                   {% if not request.permissions.view_archive %} class="disabled" {% endif %}>
+                   Архив
+                </a>
+            </li>
+            <li>
                 <a href="{% url 'change_user' %}">
                    Сменить пользователя
                 </a>

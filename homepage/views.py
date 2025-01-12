@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from access_control.decorators import permission_required
 
 

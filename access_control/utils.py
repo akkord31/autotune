@@ -11,8 +11,9 @@ def has_permission(user, view_name):
             'suppliers': access.view_suppliers, #
             'employees': access.view_employees, #
             'salary': access.view_salary,
-            'reports': access.view_reports,
+            'reports': access.view_reports, #
             'access_system': access.view_access_system, #
+            'archive': access.view_archive, #
         }
 
         return permission_map.get(view_name, 0) in [1, 2]  # 1 - доступ разрешен, 0 - доступ запрещен
