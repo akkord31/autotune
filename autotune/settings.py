@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'employees',
     'access_control',
     'employee_payroll',
-    'archive'
+    'archive',
+    'reports'
 ]
 
 MIDDLEWARE = [

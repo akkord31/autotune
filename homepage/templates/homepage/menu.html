@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{% url 'generate_report' %}"
                    {% if not request.permissions.view_reports %} class="disabled" {% endif %}>
                    Отчёты
                 </a>

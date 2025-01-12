@@ -26,6 +26,7 @@ urlpatterns = [
     path('access/', include('access_control.urls')),
     path('employees/', include('employees.urls')),
     path('payroll_list/', include('employee_payroll.urls')),
-    path('archive/', include('archive.urls'))
+    path('archive/', include('archive.urls')),
+    path('reports/', include('reports.urls'))
 ]
 
