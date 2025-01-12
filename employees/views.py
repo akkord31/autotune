@@ -6,5 +6,5 @@ from .models import Employee  # Импорт модели Employee
 
 @permission_required('employees')
 def employee_list(request):
-    employees = Employee.objects.all()  # Получение всех сотрудников из базы данных
+    employees = Employee.objects.all()
     return render(request, 'employees/employees.html', {'employees': employees})
