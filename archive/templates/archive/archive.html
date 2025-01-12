@@ -8,69 +8,111 @@
     <link rel="stylesheet" href="{% static 'archive/styles.css' %}">
 </head>
 <body>
-    <h1>Архив оказанных услуг</h1>
+<h1>Архив оказанных услуг</h1>
+<a href="{% url 'homepage' %}" class="button">Меню</a>
+<div>
+    <div class="filter-and-form-container">
+        <form method="GET" action="{% url 'archive' %}" class="filter-form">
+            <h2>Фильтр записей</h2>
+            <div>
+                <label for="car_code">Код машины:</label>
+                <input type="text" id="car_code" name="car_code" value="{{ request.GET.car_code }}">
+            </div>
+            <div>
+                <label for="service_code">Код услуги:</label>
+                <input type="text" id="service_code" name="service_code" value="{{ request.GET.service_code }}">
+            </div>
+            <div>
+                <label for="start_date">Дата начала (ГГГГ-ММ-ДД):</label>
+                <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}">
+            </div>
+            <div>
+                <label for="end_date">Дата окончания (ГГГГ-ММ-ДД):</label>
+                <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}">
+            </div>
+            <div>
+                <label for="sort_by">Сортировать по:</label>
+                <select name="sort_by" id="sort_by">
+                    <option value="service_date" {% if request.GET.sort_by == 'service_date' %}selected{% endif %}>Дате
+                        оказания услуги
+                    </option>
+                    <option value="final_price" {% if request.GET.sort_by == 'final_price' %}selected{% endif %}>
+                        Окончательной цене
+                    </option>
+                    <option value="car__code" {% if request.GET.sort_by == 'car__code' %}selected{% endif %}>Коду машины
+                    </option>
+                </select>
+            </div>
+            <button type="submit">Применить фильтр</button>
+        </form>
 
-    <form method="GET" action="{% url 'archive' %}">
-        <div>
-            <label for="car_code">Код машины:</label>
-            <input type="text" id="car_code" name="car_code" value="{{ request.GET.car_code }}">
-        </div>
-        <div>
-            <label for="service_code">Код услуги:</label>
-            <input type="text" id="service_code" name="service_code" value="{{ request.GET.service_code }}">
-        </div>
-        <div>
-            <label for="start_date">Дата начала (ГГГГ-ММ-ДД):</label>
-            <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}">
-        </div>
-        <div>
-            <label for="end_date">Дата окончания (ГГГГ-ММ-ДД):</label>
-            <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}">
-        </div>
-        <div>
-            <label for="sort_by">Сортировать по:</label>
-            <select name="sort_by" id="sort_by">
-                <option value="service_date" {% if request.GET.sort_by == 'service_date' %}selected{% endif %}>Дате оказания услуги</option>
-                <option value="final_price" {% if request.GET.sort_by == 'final_price' %}selected{% endif %}>Окончательной цене</option>
-                <option value="car__code" {% if request.GET.sort_by == 'car__code' %}selected{% endif %}>Коду машины</option>
-                <option value="service__code" {% if request.GET.sort_by == 'service__code' %}selected{% endif %}>Коду услуги</option>
-                <option value="service__name" {% if request.GET.sort_by == 'service__name' %}selected{% endif %}>Наименованию услуги</option>
-                <option value="car__brand" {% if request.GET.sort_by == 'car__brand' %}selected{% endif %}>Марке машины</option>
-                <option value="car__coefficient" {% if request.GET.sort_by == 'car__coefficient' %}selected{% endif %}>Коэффициенту машины</option>
-            </select>
-        </div>
-        <button type="submit">Применить фильтр</button>
-    </form>
+        <button onclick="toggleAddForm()" id="add-record-button">Добавить запись</button>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Марка</th>
-                <th>Код машины</th>
-                <th>Дата оказания услуги</th>
-                <th>Код услуги</th>
-                <th>Наименование</th>
-                <th>Цена</th>
-                <th>Коэффициент</th>
-                <th>Окончательная цена</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for record in archive_records %}
-            <tr>
-                <td>{{ record.car.brand }}</td>
-                <td>{{ record.car.code }}</td>
-                <td>{{ record.service_date }}</td>
-                <td>{{ record.service.code }}</td>
-                <td>{{ record.service.name }}</td>
-                <td>{{ record.service.price }}</td>
-                <td>{{ record.car.coefficient }}</td>
-                <td>{{ record.final_price }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <br>
-    <a href="{% url 'homepage' %}" style="display: inline-block; padding: 10px 20px; background-color: #004080; color: #ffffff; border-radius: 5px; text-decoration: none;">Меню</a>
+    <div class="add-record-container" id="add-record-container">
+        <button onclick="toggleAddForm()">Закрыть</button>
+        <form method="POST" action="{% url 'archive_add' %}" id="add-record-form">
+            {% csrf_token %}
+            <h2>Добавить запись в архив услуг</h2>
+            <div>
+                <label for="car_code_modal">Код машины:</label>
+                <input type="text" id="car_code_modal" name="car_code" required>
+            </div>
+            <div>
+                <label for="service_code_modal">Код услуги:</label>
+                <input type="text" id="service_code_modal" name="service_code" required>
+            </div>
+            <div>
+                <label for="service_date_modal">Дата оказания услуги (ГГГГ-ММ-ДД):</label>
+                <input type="date" id="service_date_modal" name="service_date" required>
+            </div>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>Марка</th>
+        <th>Код машины</th>
+        <th>Дата оказания услуги</th>
+        <th>Код услуги</th>
+        <th>Наименование</th>
+        <th>Цена</th>
+        <th>Коэффициент</th>
+        <th>Окончательная цена</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for record in archive_records %}
+        <tr>
+            <td>{{ record.car.brand }}</td>
+            <td>{{ record.car.code }}</td>
+            <td>{{ record.service_date }}</td>
+            <td>{{ record.service.code }}</td>
+            <td>{{ record.service.name }}</td>
+            <td>{{ record.service.price }}</td>
+            <td>{{ record.car.coefficient }}</td>
+            <td>{{ record.final_price }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<script>
+    function toggleAddForm() {
+        const addForm = document.getElementById('add-record-container');
+        const button = document.getElementById('add-record-button');
+
+        if (addForm.style.display === 'none' || addForm.style.display === '') {
+            addForm.style.display = 'block';
+            button.style.display = 'none'; // Скрываем кнопку "Добавить запись"
+        } else {
+            addForm.style.display = 'none';
+            button.style.display = 'block'; // Показываем кнопку "Добавить запись"
+        }
+    }
+</script>
 </body>
 </html>

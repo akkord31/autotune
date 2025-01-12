@@ -1,5 +1,4 @@
-/* services/styles.css */
-
+/* Общие стили */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f7fc;
@@ -14,27 +13,59 @@ h1 {
     margin-top: 20px;
 }
 
-form {
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #004080;
+    color: #ffffff;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 20px auto;
+    text-align: center;
+}
+
+a:hover {
+    background-color: #003366;
+}
+
+/* Основной контейнер для форм */
+.filter-and-form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Стили формы фильтрации */
+.filter-form {
+    flex: 1;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 20px auto;
 }
 
-form div {
+.filter-form h2 {
+    margin-top: 0;
+}
+
+.filter-form div {
     margin-bottom: 15px;
 }
 
-form label {
+.filter-form label {
     font-size: 14px;
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
 }
 
-form input[type="text"], form input[type="date"], form select {
+.filter-form input[type="text"],
+.filter-form input[type="date"],
+.filter-form select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -42,7 +73,7 @@ form input[type="text"], form input[type="date"], form select {
     font-size: 14px;
 }
 
-form button {
+.filter-form button {
     background-color: #004080;
     color: #fff;
     padding: 10px 20px;
@@ -53,10 +84,59 @@ form button {
     width: 100%;
 }
 
-form button:hover {
+.filter-form button:hover {
     background-color: #003366;
 }
 
+/* Стили формы добавления */
+.add-record-container {
+    flex: 1;
+    display: none; /* Скрываем форму по умолчанию */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-record-container h2 {
+    margin-top: 0;
+}
+
+.add-record-container div {
+    margin-bottom: 15px;
+}
+
+.add-record-container label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.add-record-container input[type="text"],
+.add-record-container input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.add-record-container button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.add-record-container button:hover {
+    background-color: #e60000;
+}
+
+/* Стили таблицы */
 table {
     width: 90%;
     margin: 20px auto;
@@ -85,31 +165,33 @@ table tr:hover {
     background-color: #f1f1f1;
 }
 
-a {
-    display: inline-block;
+/* Кнопка "Добавить запись" */
+#add-record-button {
+    background-color: #008000;
+    color: white;
     padding: 10px 20px;
-    background-color: #004080;
-    color: #ffffff;
+    border: none;
     border-radius: 5px;
-    text-decoration: none;
-    margin-top: 20px;
-    text-align: center;
-    width: 100%;
-    max-width: 200px;
-    margin: 20px auto;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-a:hover {
-    background-color: #003366;
+#add-record-button:hover {
+    background-color: #006400;
 }
 
-@media (max-width: 768px) {
-    table {
-        width: 100%;
+
+@media (max-width: 600px) {
+    .filter-and-form-container {
+        flex-direction: column;
+        align-items: center;
     }
 
-    form {
-        padding: 15px;
-        width: 95%;
+    .filter-form, .add-record-container {
+        max-width: 100%;
+    }
+
+    table {
+        width: 100%;
     }
 }

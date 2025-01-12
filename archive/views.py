@@ -1,7 +1,37 @@
-from django.shortcuts import render
-from django.db.models import F
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect
 from access_control.decorators import permission_required
+from services.models import Car, Service
 from .models import ServiceArchive
+
+
+@permission_required('archive')
+def archive_add(request):
+    if request.method == 'POST':
+        car_code = request.POST.get('car_code')
+        service_code = request.POST.get('service_code')
+        service_date = request.POST.get('service_date')
+
+        try:
+            car = Car.objects.get(code=car_code)
+            service = Service.objects.get(code=service_code)
+
+            final_price = service.price * car.coefficient
+
+            service_archive = ServiceArchive(
+                car=car,
+                service=service,
+                service_date=service_date,
+                final_price=final_price
+            )
+            service_archive.save()
+
+            return redirect('archive')
+
+        except (Car.DoesNotExist, Service.DoesNotExist):
+            return HttpResponse("Ошибка: Неверные данные!", status=400)
+
+    return render(request, 'archive/archive.html')
 
 
 @permission_required('archive')
