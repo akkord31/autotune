@@ -1,6 +1,24 @@
 from django.shortcuts import render
 from employees.models import Employee
 from .forms import MonthSelectionForm
+import calendar
+
+
+MONTH_TRANSLATIONS = {
+    'January': 'Январь',
+    'February': 'Февраль',
+    'March': 'Март',
+    'April': 'Апрель',
+    'May': 'Май',
+    'June': 'Июнь',
+    'July': 'Июль',
+    'August': 'Август',
+    'September': 'Сентябрь',
+    'October': 'Октябрь',
+    'November': 'Ноябрь',
+    'December': 'Декабрь',
+}
+
 
 def payroll_view(request):
     form = MonthSelectionForm(request.GET or None)
@@ -8,7 +26,8 @@ def payroll_view(request):
     employees = []
 
     if form.is_valid():
-        selected_month = form.cleaned_data['month']
+        month_number = form.cleaned_data['month']
+        selected_month = MONTH_TRANSLATIONS[calendar.month_name[int(month_number)]]
         employees = Employee.objects.all()
         for employee in employees:
             employee.accrued = employee.salary  # Начислено
