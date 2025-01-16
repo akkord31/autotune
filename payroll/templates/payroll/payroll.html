@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица зарплат</title>
+</head>
+<body>
+    <h1>Расчёт зарплат</h1>
+
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Показать</button>
+    </form>
+
+    {% if employees %}
+        <h2>Зарплаты за {{ selected_month }}</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Таб. №</th>
+                    <th>ФИО</th>
+                    <th>Начислено</th>
+                    <th>Удержанно</th>
+                    <th>К выдаче</th>
+                    <th>Дети</th>
+                    <th>Сумма</th>
+                    <th>На детей</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emp in employees %}
+                    <tr>
+                        <td>{{ emp.tab_number }}</td>
+                        <td>{{ emp.surname }}</td>
+                        <td>{{ emp.accrued }}</td>
+                        <td>{{ emp.deducted }}</td>
+                        <td>{{ emp.to_pay }}</td>
+                        <td>{{ emp.children }}</td>
+                        <td>{{ emp.total_with_children }}</td>
+                        <td>{{ emp.child_sum }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
