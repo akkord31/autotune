@@ -1,16 +1,18 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архив услуг</title>
-    <link rel="stylesheet" href="{% static 'archive/styles.css' %}">
-</head>
-<body>
 
+{% block title %}Архив услуг{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'archive/styles.css' %}">
+{% endblock %}
+
+{% block header %}
 <h1>Архив оказанных услуг</h1>
-<a href="{% url 'homepage' %}" class="button">Меню</a>
+{% endblock %}
+
+{% block content %}
+
 <div class="filter-and-form-container">
     <!-- Форма фильтрации -->
     <form method="GET" action="{% url 'archive' %}" class="filter-form">
@@ -96,7 +98,6 @@
     </tbody>
 </table>
 
-
 <script>
     function toggleAddForm() {
         const addForm = document.getElementById('add-record-container');
@@ -111,5 +112,4 @@
         }
     }
 </script>
-</body>
-</html>
+{% endblock %}

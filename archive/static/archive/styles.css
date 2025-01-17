@@ -9,7 +9,7 @@ body {
 
 h1 {
     text-align: center;
-    color: #004080;
+    color: #ffffff;
     margin-top: 20px;
 }
 
@@ -35,6 +35,7 @@ a:hover {
     margin: 20px auto;
     max-width: 1200px;
 }
+
 /* Стили формы фильтрации */
 .filter-form {
     flex: 1;
