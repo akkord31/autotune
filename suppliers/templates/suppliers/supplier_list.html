@@ -1,14 +1,18 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Поставщики</title>
+
+{% block title %}Поставщики{% endblock %}
+
+{% block extra_styles %}
     <link rel="stylesheet" href="{% static 'suppliers/styles.css' %}">
-</head>
-<body>
+{% endblock %}
+
+{% block header %}
     <h1>Поставщики</h1>
-    <table border="1">
+{% endblock %}
+
+{% block content %}
+    <table>
         <thead>
             <tr>
                 <th>Код поставщика</th>
@@ -28,7 +32,4 @@
             {% endfor %}
         </tbody>
     </table>
-    <br>
-    <a href="{% url 'homepage' %}" style="display: inline-block; padding: 10px 20px; background-color: #004080; color: #ffffff; border-radius: 5px; text-decoration: none;">Меню</a>
-</body>
-</html>
+{% endblock %}

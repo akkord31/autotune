@@ -1,13 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таблица зарплат</title>
-    <link rel="stylesheet" href="{% static 'payroll/styles.css' %}">
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Таблица зарплат{% endblock %}
+
+{% block content %}
     <h1>Расчёт зарплат</h1>
 
     <form method="get">
@@ -17,7 +12,7 @@
 
     {% if employees %}
         <h2>Зарплаты за {{ selected_month }}</h2>
-        <table border="1">
+        <table>
             <thead>
                 <tr>
                     <th>Таб. №</th>
@@ -47,7 +42,5 @@
         </table>
     {% endif %}
     <br>
-    <a href="{% url 'homepage' %}" style="display: inline-block; padding: 10px 20px; background-color: #004080; color: #ffffff; border-radius: 5px; text-decoration: none;">Меню</a>
-
-</body>
-</html>
+    <a href="{% url 'homepage' %}" class="menu-button">Меню</a>
+{% endblock %}

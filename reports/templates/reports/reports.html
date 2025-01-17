@@ -1,18 +1,13 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Отчёт по услугам</title>
-    <link rel="stylesheet" href="{% static 'reports/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Отчёт по услугам</h1>
-        </header>
+{% extends 'base.html' %}
 
+{% block title %}Отчёт по услугам{% endblock %}
+
+{% block header %}
+    <h1>Отчёт по услугам</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
         <section class="filter-form">
             <form method="GET">
                 <div class="form-group">
@@ -72,5 +67,4 @@
         </section>
         {% endif %}
     </div>
-</body>
-</html>
+{% endblock %}
